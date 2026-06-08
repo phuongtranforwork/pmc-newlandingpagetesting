@@ -4,246 +4,956 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Học Product Management cùng Phương Product</title>
-    <script src="[https://cdn.tailwindcss.com](https://cdn.tailwindcss.com)"></script>
-    <link rel="preconnect" href="[https://fonts.googleapis.com](https://fonts.googleapis.com)">
-    <link rel="preconnect" href="[https://fonts.gstatic.com](https://fonts.gstatic.com)" crossorigin>
-    <link href="[https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap](https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap)" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Viaoda+Libre&family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --orange: #FF5C1A;
+            --orange-dim: #D14B14;
+            --dark: #111010;
+            --dark-2: #1C1B1B;
+            --dark-3: #252424;
+            --mid: #3A3838;
+            --muted: #8A8787;
+            --light: #F4F2EE;
+            --cream: #FAF8F4;
+            --white: #FFFFFF;
+            --serif: 'Viaoda Libre', Georgia, serif;
+            --sans: 'Be Vietnam Pro', sans-serif;
+            --display: 'Be Vietnam Pro', sans-serif;
         }
-        .text-gradient {
-            background: linear-gradient(to right, #ffffff, #a3a3a3);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--sans);
+            background: var(--cream);
+            color: var(--dark);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* NAV */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(244, 242, 238, 0.88);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(17,16,16,0.08);
+        }
+        .nav-inner {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 0 32px;
+            height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo {
+            font-family: var(--display);
+            font-weight: 800;
+            font-size: 18px;
+            letter-spacing: -0.02em;
+            color: var(--dark);
+            text-decoration: none;
+        }
+        .logo span { color: var(--orange); }
+        .nav-links {
+            display: flex;
+            gap: 36px;
+            list-style: none;
+        }
+        .nav-links a {
+            font-family: var(--display);
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: var(--muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--dark); }
+        .nav-cta {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 24px;
+            height: 42px;
+            background: var(--dark);
+            color: var(--white);
+            font-family: var(--display);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: background 0.25s, color 0.25s;
+            clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+        }
+        .nav-cta:hover { background: var(--orange); }
+
+        /* HERO */
+        .hero {
+            background: var(--dark);
+            color: var(--white);
+            padding: 100px 0 80px;
+            overflow: hidden;
+            position: relative;
+        }
+        .hero-grid-bg {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255,92,26,0.06) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,92,26,0.06) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+        .hero-glow {
+            position: absolute;
+            top: -200px;
+            right: -200px;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(255,92,26,0.12) 0%, transparent 65%);
+            pointer-events: none;
+        }
+        .hero-inner {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 0 32px;
+            position: relative;
+            z-index: 2;
+        }
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--display);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--orange);
+            margin-bottom: 32px;
+        }
+        .hero-tag::before {
+            content: '';
+            display: block;
+            width: 28px;
+            height: 2px;
+            background: var(--orange);
+        }
+        h1 {
+            font-family: var(--serif);
+            font-size: clamp(52px, 7vw, 88px);
+            font-weight: 400;
+            line-height: 0.96;
+            letter-spacing: -0.02em;
+            color: var(--white);
+            margin-bottom: 32px;
+            max-width: 780px;
+        }
+        h1 em {
+            font-style: italic;
+            color: var(--orange);
+        }
+        .hero-desc {
+            font-size: 18px;
+            font-weight: 300;
+            line-height: 1.7;
+            color: rgba(255,255,255,0.55);
+            max-width: 560px;
+            margin-bottom: 52px;
+        }
+        .hero-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0 36px;
+            height: 58px;
+            background: var(--orange);
+            color: var(--white);
+            font-family: var(--display);
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: background 0.25s, transform 0.15s;
+            clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+        }
+        .btn-primary:hover { background: var(--orange-dim); transform: translateY(-1px); }
+        .btn-ghost {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0 28px;
+            height: 58px;
+            color: rgba(255,255,255,0.5);
+            font-family: var(--display);
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: 1px solid rgba(255,255,255,0.12);
+            transition: color 0.2s, border-color 0.2s;
+        }
+        .btn-ghost:hover { color: var(--white); border-color: rgba(255,255,255,0.35); }
+        .hero-stats {
+            display: flex;
+            gap: 48px;
+            margin-top: 72px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+        .stat-num {
+            font-family: var(--display);
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--white);
+            line-height: 1;
+        }
+        .stat-num span { color: var(--orange); }
+        .stat-label {
+            font-size: 12px;
+            font-weight: 300;
+            color: rgba(255,255,255,0.4);
+            letter-spacing: 0.04em;
+            margin-top: 6px;
+            text-transform: uppercase;
+        }
+
+        /* SECTION BASE */
+        section { padding: 96px 0; }
+        .container {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--display);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--orange);
+            margin-bottom: 20px;
+        }
+        .section-label::before {
+            content: '';
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--orange);
+        }
+        h2 {
+            font-family: var(--serif);
+            font-size: clamp(36px, 4vw, 52px);
+            font-weight: 400;
+            line-height: 1.08;
+            letter-spacing: -0.02em;
+            color: var(--dark);
+        }
+
+        /* PAIN SECTION */
+        #vande { background: var(--white); }
+        .pain-layout {
+            display: grid;
+            grid-template-columns: 340px 1fr;
+            gap: 80px;
+            align-items: start;
+        }
+        .pain-intro h2 { margin-top: 12px; }
+        .pain-intro p {
+            margin-top: 20px;
+            font-size: 15px;
+            font-weight: 300;
+            line-height: 1.7;
+            color: var(--muted);
+        }
+        .pain-cards { display: flex; flex-direction: column; gap: 0; }
+        .pain-item {
+            padding: 32px 0;
+            border-bottom: 1px solid rgba(17,16,16,0.07);
+            position: relative;
+        }
+        .pain-item:first-child { border-top: 1px solid rgba(17,16,16,0.07); }
+        .pain-num {
+            font-family: var(--display);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            color: var(--orange);
+            margin-bottom: 10px;
+        }
+        .pain-item h3 {
+            font-family: var(--display);
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+        .pain-item p {
+            font-size: 15px;
+            font-weight: 300;
+            line-height: 1.7;
+            color: var(--muted);
+        }
+        .pain-accent {
+            position: absolute;
+            left: -32px;
+            top: 32px;
+            width: 3px;
+            height: 0;
+            background: var(--orange);
+            transition: height 0.4s ease;
+        }
+
+        /* PHILOSOPHY SECTION */
+        #giaiphap { background: var(--dark); }
+        #giaiphap h2 { color: var(--white); }
+        #giaiphap .section-label { }
+        .philosophy-header { text-align: center; margin-bottom: 64px; }
+        .philosophy-header h2 { margin-top: 12px; }
+        .philosophy-sub {
+            margin-top: 20px;
+            font-size: 17px;
+            font-weight: 300;
+            line-height: 1.75;
+            color: rgba(255,255,255,0.45);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .divider-orange {
+            width: 48px;
+            height: 3px;
+            background: var(--orange);
+            margin: 24px auto 0;
+        }
+        .philosophy-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2px;
+        }
+        .phil-card {
+            background: var(--dark-2);
+            padding: 48px 44px;
+            position: relative;
+            overflow: hidden;
+        }
+        .phil-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--orange);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .phil-card:hover::before { opacity: 1; }
+        .phil-tag {
+            font-family: var(--display);
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--orange);
+            margin-bottom: 20px;
+            font-style: normal;
+        }
+        .phil-card h3 {
+            font-family: var(--display);
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 14px;
+            letter-spacing: -0.02em;
+        }
+        .phil-card p {
+            font-size: 14px;
+            font-weight: 300;
+            line-height: 1.75;
+            color: rgba(255,255,255,0.45);
+        }
+
+        /* MODULES SECTION */
+        #lotrinh { background: var(--cream); }
+        .modules-header {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: end;
+            margin-bottom: 64px;
+        }
+        .modules-header h2 { margin-top: 12px; }
+        .modules-header p {
+            font-size: 15px;
+            font-weight: 300;
+            line-height: 1.7;
+            color: var(--muted);
+            align-self: end;
+        }
+        .modules-list { display: flex; flex-direction: column; }
+        .module-row {
+            display: grid;
+            grid-template-columns: 120px 1fr 2fr;
+            gap: 32px;
+            align-items: start;
+            padding: 40px 0;
+            border-top: 1px solid rgba(17,16,16,0.08);
+            transition: background 0.2s;
+        }
+        .module-row:last-child { border-bottom: 1px solid rgba(17,16,16,0.08); }
+        .module-num {
+            font-family: var(--display);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--orange);
+            padding-top: 4px;
+        }
+        .module-row h3 {
+            font-family: var(--display);
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--dark);
+            letter-spacing: -0.01em;
+            padding-top: 2px;
+        }
+        .module-row p {
+            font-size: 14px;
+            font-weight: 300;
+            line-height: 1.75;
+            color: var(--muted);
+        }
+        .module-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 16px;
+        }
+        .tag {
+            display: inline-block;
+            padding: 4px 12px;
+            border: 1px solid rgba(17,16,16,0.12);
+            font-family: var(--display);
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--mid);
+        }
+
+        /* MENTOR SECTION */
+        #mentor { background: var(--white); }
+        .mentor-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+        .mentor-visual {
+            position: relative;
+        }
+        .mentor-card {
+            background: var(--dark);
+            padding: 52px 48px;
+            position: relative;
+            overflow: hidden;
+        }
+        .mentor-card-bg {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255,92,26,0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,92,26,0.08) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        .mentor-years {
+            font-family: var(--display);
+            font-size: 80px;
+            font-weight: 800;
+            color: rgba(255,255,255,0.06);
+            line-height: 1;
+            margin-bottom: -12px;
+            position: relative;
+            z-index: 1;
+        }
+        .mentor-name {
+            font-family: var(--serif);
+            font-size: 36px;
+            font-style: italic;
+            color: var(--white);
+            position: relative;
+            z-index: 1;
+        }
+        .mentor-role {
+            font-family: var(--display);
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.4);
+            margin-top: 10px;
+            position: relative;
+            z-index: 1;
+        }
+        .mentor-brands {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 32px;
+            position: relative;
+            z-index: 1;
+        }
+        .brand-pill {
+            display: inline-block;
+            padding: 5px 14px;
+            border: 1px solid rgba(255,255,255,0.12);
+            font-family: var(--display);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            color: rgba(255,255,255,0.5);
+        }
+        .mentor-accent {
+            position: absolute;
+            bottom: -24px;
+            right: -24px;
+            width: 96px;
+            height: 96px;
+            background: var(--orange);
+            z-index: 0;
+        }
+        .mentor-content h2 { margin-top: 12px; }
+        .mentor-content p {
+            font-size: 15px;
+            font-weight: 300;
+            line-height: 1.8;
+            color: var(--muted);
+            margin-top: 20px;
+        }
+        .mentor-content p + p { margin-top: 16px; }
+        .mentor-quote {
+            margin-top: 32px;
+            padding: 24px 28px;
+            border-left: 3px solid var(--orange);
+            background: var(--cream);
+        }
+        .mentor-quote p {
+            font-family: var(--serif);
+            font-style: italic;
+            font-size: 18px;
+            font-weight: 400;
+            line-height: 1.5;
+            color: var(--dark);
+            margin-top: 0;
+        }
+
+        /* REGISTER */
+        #dangky {
+            background: var(--dark);
+            padding: 120px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .register-bg {
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 40px,
+                rgba(255,92,26,0.03) 40px,
+                rgba(255,92,26,0.03) 41px
+            );
+        }
+        .register-glow {
+            position: absolute;
+            bottom: -300px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 900px;
+            height: 600px;
+            background: radial-gradient(ellipse, rgba(255,92,26,0.1) 0%, transparent 60%);
+        }
+        .register-inner {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        .register-inner h2 {
+            color: var(--white);
+            font-size: clamp(40px, 5vw, 68px);
+            margin-top: 16px;
+        }
+        .register-inner h2 em {
+            font-style: italic;
+            color: var(--orange);
+        }
+        .register-desc {
+            font-size: 16px;
+            font-weight: 300;
+            line-height: 1.7;
+            color: rgba(255,255,255,0.4);
+            max-width: 520px;
+            margin: 20px auto 56px;
+        }
+        .register-card {
+            background: var(--dark-2);
+            border: 1px solid rgba(255,255,255,0.06);
+            max-width: 440px;
+            margin: 0 auto 56px;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+        }
+        .register-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(to right, var(--orange), #FF9A66);
+        }
+        .register-card-inner { padding: 40px 40px 36px; }
+        .register-tier {
+            font-family: var(--display);
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--orange);
+            margin-bottom: 10px;
+        }
+        .register-title {
+            font-family: var(--display);
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: -0.02em;
+        }
+        .register-divider {
+            height: 1px;
+            background: rgba(255,255,255,0.06);
+            margin: 24px 0;
+        }
+        .register-features {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-bottom: 32px;
+        }
+        .register-features li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 14px;
+            font-weight: 300;
+            color: rgba(255,255,255,0.55);
+            line-height: 1.5;
+        }
+        .register-features li::before {
+            content: '✓';
+            color: var(--orange);
+            font-weight: 700;
+            font-size: 13px;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+        .register-btn {
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 18px;
+            background: var(--orange);
+            color: var(--white);
+            font-family: var(--display);
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: background 0.25s;
+            clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+        }
+        .register-btn:hover { background: var(--orange-dim); }
+        .register-footer-note {
+            font-family: var(--display);
+            font-size: 11px;
+            letter-spacing: 0.06em;
+            color: rgba(255,255,255,0.2);
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--dark);
+            border-top: 1px solid rgba(255,255,255,0.04);
+            padding: 32px;
+            text-align: center;
+        }
+        footer p {
+            font-family: var(--display);
+            font-size: 11px;
+            letter-spacing: 0.06em;
+            color: rgba(255,255,255,0.2);
+            text-transform: uppercase;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .nav-links { display: none; }
+            h1 { font-size: clamp(44px, 8vw, 68px); }
+            .hero-stats { gap: 32px; flex-wrap: wrap; }
+            .pain-layout { grid-template-columns: 1fr; gap: 48px; }
+            .philosophy-cards { grid-template-columns: 1fr; gap: 2px; }
+            .modules-header { grid-template-columns: 1fr; gap: 16px; }
+            .module-row { grid-template-columns: 1fr; gap: 12px; padding: 32px 0; }
+            .module-num { padding-top: 0; }
+            .mentor-layout { grid-template-columns: 1fr; gap: 48px; }
+            .mentor-accent { display: none; }
+        }
+
+        @media (max-width: 600px) {
+            .container { padding: 0 20px; }
+            .nav-inner { padding: 0 20px; }
+            section { padding: 64px 0; }
+            .hero { padding: 72px 0 60px; }
+            .hero-inner { padding: 0 20px; }
         }
     </style>
 </head>
-<body class="bg-[#fafafa] text-[#171717] antialiased selection:bg-[#ff6b00] selection:text-white">
+<body>
 
-    <nav class="sticky top-0 z-50 bg-[#fafafa]/80 backdrop-blur-md border-b border-neutral-200/50">
-        <div class="max-w-5xl mx-auto px-6 h-20 flex items-center justify-between">
-            <div class="font-bold text-lg tracking-tight flex items-center gap-2">
-                Phương<span class="text-[#ff6b00]">Product.</span>
-            </div>
-            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-neutral-500">
-                <a href="#vande" class="hover:text-[#171717] transition-colors">Thách thức</a>
-                <a href="#giaiphap" class="hover:text-[#171717] transition-colors">Triết lý học</a>
-                <a href="#lotrinh" class="hover:text-[#171717] transition-colors">Chương trình</a>
-                <a href="#mentor" class="hover:text-[#171717] transition-colors">Mentor</a>
-            </div>
-            <a href="#dangky" class="inline-flex items-center justify-center px-5 h-11 text-sm font-semibold text-white bg-[#171717] hover:bg-[#ff6b00] transition-all duration-300 rounded-none tracking-wide">
-                Đăng ký ngay
-            </a>
+    <nav>
+        <div class="nav-inner">
+            <a href="#" class="logo">Phương<span>Product.</span></a>
+            <ul class="nav-links">
+                <li><a href="#vande">Thách thức</a></li>
+                <li><a href="#giaiphap">Triết lý</a></li>
+                <li><a href="#lotrinh">Chương trình</a></li>
+                <li><a href="#mentor">Mentor</a></li>
+            </ul>
+            <a href="#dangky" class="nav-cta">Đăng ký ngay</a>
         </div>
     </nav>
 
-    <section class="relative bg-[#171717] text-white py-24 lg:py-36 overflow-hidden">
-        <div class="absolute inset-0 bg-[radial-gradient(#262626_1px,transparent_1px)] [background-size:24px_24px] opacity-30"></div>
-        <div class="max-w-5xl mx-auto px-6 relative z-10">
-            <div class="max-w-3xl">
-                <span class="inline-block text-xs font-semibold uppercase tracking-widest text-[#ff6b00] mb-6">
-                    Private Mentoring Program
-                </span>
-                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] mb-8">
-                    Bẻ gãy rào cản.<br>
-                    <span class="text-gradient">Thăng tiến Senior PM.</span>
-                </h1>
-                <p class="text-lg md:text-xl text-neutral-400 font-light leading-relaxed mb-12 max-w-2xl">
-                    Chương trình huấn luyện thực chiến thiết kế riêng để giúp bạn làm chủ năng lực Lead team, xóa tan hoang mang khi đối mặt với các dự án phức tạp và định hình lại giá trị của một Product Manager chuyên nghiệp.
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4">
-                    <a href="#dangky" class="inline-flex items-center justify-center px-8 h-14 text-base font-semibold text-white bg-[#ff6b00] hover:bg-[#e05e00] transition-all duration-300 rounded-none tracking-wide shadow-lg shadow-[#ff6b00]/10">
-                        Nâng tầm sự nghiệp ứng tuyển
-                    </a>
-                    <a href="#lotrinh" class="inline-flex items-center justify-center px-8 h-14 text-base font-medium text-neutral-400 hover:text-white border border-neutral-700 hover:border-neutral-500 transition-all duration-300 rounded-none">
-                        Khám phá lộ trình
-                    </a>
+    <section class="hero">
+        <div class="hero-grid-bg"></div>
+        <div class="hero-glow"></div>
+        <div class="hero-inner">
+            <div class="hero-tag">Private Mentoring Program</div>
+            <h1>Bẻ gãy<br>rào cản.<br><em>Thăng tiến<br>Senior PM.</em></h1>
+            <p class="hero-desc">Chương trình huấn luyện thực chiến thiết kế riêng để giúp bạn làm chủ năng lực Lead team, xóa tan hoang mang khi đối mặt với các dự án phức tạp và định hình lại giá trị của một Product Manager chuyên nghiệp.</p>
+            <div class="hero-actions">
+                <a href="#dangky" class="btn-primary">Ứng tuyển ngay</a>
+                <a href="#lotrinh" class="btn-ghost">Khám phá lộ trình →</a>
+            </div>
+            <div class="hero-stats">
+                <div>
+                    <div class="stat-num">13<span>+</span></div>
+                    <div class="stat-label">Năm kinh nghiệm</div>
+                </div>
+                <div>
+                    <div class="stat-num">3</div>
+                    <div class="stat-label">Module thực chiến</div>
+                </div>
+                <div>
+                    <div class="stat-num">1<span>:1</span></div>
+                    <div class="stat-label">Phản biện cá nhân</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="vande" class="py-24 lg:py-32 bg-white border-b border-neutral-100">
-        <div class="max-w-5xl mx-auto px-6">
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-8">
-                <div class="lg:col-span-1">
-                    <span class="text-xs font-semibold uppercase tracking-widest text-[#ff6b00] block mb-4">01 / Thực trạng</span>
-                    <h2 class="text-3xl font-bold tracking-tight text-[#171717] leading-tight">
-                        Những nút thắt ngầm đang giữ chân bạn tại vị trí Middle.
-                    </h2>
+    <section id="vande">
+        <div class="container">
+            <div class="pain-layout">
+                <div class="pain-intro">
+                    <div class="section-label">01 / Thực trạng</div>
+                    <h2>Những nút thắt ngầm đang giữ chân bạn.</h2>
+                    <p>Có kinh nghiệm nhưng vẫn không thoát khỏi vị trí Middle. Đây là lý do tại sao.</p>
                 </div>
-                <div class="lg:col-span-2 grid grid-cols-1 md:grid-cols-1 gap-8">
-                    <div class="border-l-2 border-neutral-200 pl-6 py-2 hover:border-[#ff6b00] transition-colors duration-300">
-                        <h3 class="text-lg font-bold text-[#171717] mb-2">Loay hoay trước tiêu chuẩn Senior</h3>
-                        <p class="text-neutral-500 font-light leading-relaxed">
-                            Có kinh nghiệm nhưng thiếu một khung năng lực chuẩn để bứt phá. Bạn làm nhiều nhưng không tích lũy được tác động chiến lược (strategic impact) rõ ràng để chứng minh năng lực với ban giám đốc.
-                        </p>
+                <div class="pain-cards">
+                    <div class="pain-item">
+                        <div class="pain-num">/ 01</div>
+                        <h3>Loay hoay trước tiêu chuẩn Senior</h3>
+                        <p>Có kinh nghiệm nhưng thiếu một khung năng lực chuẩn để bứt phá. Bạn làm nhiều nhưng không tích lũy được tác động chiến lược rõ ràng để chứng minh năng lực với ban giám đốc.</p>
                     </div>
-                    <div class="border-l-2 border-neutral-200 pl-6 py-2 hover:border-[#ff6b00] transition-colors duration-300">
-                        <h3 class="text-lg font-bold text-[#171717] mb-2">Đuối sức khi Lead liên phòng ban</h3>
-                        <p class="text-neutral-500 font-light leading-relaxed">
-                            Bị kẹt ở giữa các bên (Engineering, Design, Business). Thiếu kỹ năng gây ảnh hưởng không dùng quyền lực (Influence without Authority), dẫn đến việc quản lý stakeholders trở thành một cuộc chiến kiệt sức.
-                        </p>
+                    <div class="pain-item">
+                        <div class="pain-num">/ 02</div>
+                        <h3>Đuối sức khi Lead liên phòng ban</h3>
+                        <p>Bị kẹt ở giữa các bên Engineering, Design, Business. Thiếu kỹ năng gây ảnh hưởng không dùng quyền lực, dẫn đến việc quản lý stakeholders trở thành một cuộc chiến kiệt sức.</p>
                     </div>
-                    <div class="border-l-2 border-neutral-200 pl-6 py-2 hover:border-[#ff6b00] transition-colors duration-300">
-                        <h3 class="text-lg font-bold text-[#171717] mb-2">Hoang mang trước dự án thực tế phức tạp</h3>
-                        <p class="text-neutral-500 font-light leading-relaxed">
-                            Khi đối mặt với các bài toán lớn, mơ hồ hoặc cấu trúc dữ liệu rắc rối, bạn thiếu các framework chuẩn để bóc tách vấn đề, dẫn đến việc đưa ra các quyết định sản phẩm mang tính cảm tính, rủi ro cao.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="giaiphap" class="py-24 lg:py-32 bg-[#fafafa]">
-        <div class="max-w-5xl mx-auto px-6">
-            <div class="max-w-3xl mx-auto text-center mb-16">
-                <span class="text-xs font-semibold uppercase tracking-widest text-[#ff6b00] block mb-4">02 / Triết lý huấn luyện</span>
-                <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-6">High-value & No Breadcrumbs</h2>
-                <div class="w-12 h-[2px] bg-[#ff6b00] mx-auto mb-6"></div>
-                <p class="text-base md:text-lg text-neutral-600 font-light leading-relaxed">
-                    Tôi không bán những mẩu vụn lý thuyết hay các bài giảng đóng gói sẵn để vỗ về cảm xúc của bạn. Chương trình này tập trung tối đa vào tính nguyên bản, thực chiến cao cấp và kết quả đầu ra thực tế. Học tới đâu, xử lý triệt để bài toán công việc tới đó.
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                <div class="bg-white p-8 border border-neutral-200/60 shadow-sm">
-                    <div class="text-xs font-mono text-neutral-400 mb-4">// THỰC CHIẾN GIAO DIỆN</div>
-                    <h3 class="text-lg font-bold mb-3">Case-study Nguyên Bản</h3>
-                    <p class="text-neutral-500 text-sm font-light leading-relaxed">
-                        Mọi buổi học đều xoay quanh việc giải phẫu các case-study thực tế từ các tech firms lớn. Bạn học cách tư duy của một Product Manager thực thụ khi đứng trước khủng hoảng hoặc áp lực tăng trưởng.
-                    </p>
-                </div>
-                <div class="bg-white p-8 border border-neutral-200/60 shadow-sm">
-                    <div class="text-xs font-mono text-neutral-400 mb-4">// ĐỒNG HÀNH 1-1</div>
-                    <h3 class="text-lg font-bold mb-3">Phản Biện Sâu</h3>
-                    <p class="text-neutral-500 text-sm font-light leading-relaxed">
-                        Bạn gửi tài liệu, PRD hay chiến lược sản phẩm của bạn đang làm. Tôi sẽ phản biện trực tiếp để mài giũa tư duy logic, cấu trúc hệ thống và cách trình bày của bạn đạt tiêu chuẩn Senior cấp cao.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="lotrinh" class="py-24 lg:py-32 bg-white">
-        <div class="max-w-5xl mx-auto px-6">
-            <div class="mb-16">
-                <span class="text-xs font-semibold uppercase tracking-widest text-[#ff6b00] block mb-4">03 / Khung chương trình</span>
-                <h2 class="text-3xl font-bold tracking-tight text-[#171717]">Lộ trình mài giũa năng lực lõi</h2>
-            </div>
-
-            <div class="border-t border-neutral-200 divide-y divide-neutral-200">
-                <div class="py-8 grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-8 group hover:bg-[#fafafa] transition-colors duration-200 px-4 -mx-4">
-                    <div class="md:col-span-1">
-                        <span class="text-sm font-bold text-[#ff6b00]">MODULE 01</span>
-                    </div>
-                    <div class="md:col-span-1">
-                        <h3 class="text-base font-bold text-[#171717]">Tư duy chiến lược sản phẩm</h3>
-                    </div>
-                    <div class="md:col-span-2">
-                        <p class="text-neutral-500 text-sm font-light leading-relaxed">
-                            Vượt qua tư duy "feature-factory" (chỉ lo chạy theo ticket). Học cách dịch chuyển từ mục tiêu kinh doanh sang Product Vision, thiết lập OKRs/North Star Metric chuẩn chỉnh và lập Product Roadmap có sức thuyết phục cao với Stakeholders.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="py-8 grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-8 group hover:bg-[#fafafa] transition-colors duration-200 px-4 -mx-4">
-                    <div class="md:col-span-1">
-                        <span class="text-sm font-bold text-[#ff6b00]">MODULE 02</span>
-                    </div>
-                    <div class="md:col-span-1">
-                        <h3 class="text-base font-bold text-[#171717]">Lead & Influence</h3>
-                    </div>
-                    <div class="md:col-span-2">
-                        <p class="text-neutral-500 text-sm font-light leading-relaxed">
-                            Làm chủ nghệ thuật giao tiếp và gây ảnh hưởng không dùng quyền lực. Cách xử lý xung đột giữa các bên Tech - Business, cách tối ưu hóa quy trình làm việc với Agile/Scrum mà không làm xói mòn động lực của đội ngũ Engineering.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="py-8 grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-8 group hover:bg-[#fafafa] transition-colors duration-200 px-4 -mx-4">
-                    <div class="md:col-span-1">
-                        <span class="text-sm font-bold text-[#ff6b00]">MODULE 03</span>
-                    </div>
-                    <div class="md:col-span-1">
-                        <h3 class="text-base font-bold text-[#171717]">Thực thi dự án thực tế</h3>
-                    </div>
-                    <div class="md:col-span-2">
-                        <p class="text-neutral-500 text-sm font-light leading-relaxed">
-                            Đi sâu vào cấu trúc kỹ thuật và phân tích dữ liệu cho PM. Cách viết PRD sắc sảo không kẽ hở, định hình bài toán tracking dữ liệu sản phẩm, phát hiện điểm nghẽn phễu chuyển đổi và xử lý khủng hoảng vận hành khi roll-out tính năng lớn.
-                        </p>
+                    <div class="pain-item">
+                        <div class="pain-num">/ 03</div>
+                        <h3>Hoang mang trước dự án thực tế phức tạp</h3>
+                        <p>Khi đối mặt với các bài toán lớn, mơ hồ hoặc cấu trúc dữ liệu rắc rối, bạn thiếu các framework chuẩn để bóc tách vấn đề, dẫn đến quyết định sản phẩm mang tính cảm tính, rủi ro cao.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="mentor" class="py-24 lg:py-32 bg-[#fafafa]">
-        <div class="max-w-5xl mx-auto px-6">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                <div class="lg:col-span-5 relative">
-                    <div class="aspect-[4/5] bg-neutral-900 flex flex-col justify-between p-8 text-white relative overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10"></div>
-                        <div class="text-xs font-mono tracking-widest text-[#ff6b00] relative z-20">13+ YEARS EXP</div>
-                        <div class="relative z-20">
-                            <div class="text-xl font-bold tracking-tight">Phương Product</div>
-                            <div class="text-xs text-neutral-400 font-light mt-1">Product Leader / Mentor / Researcher</div>
+    <section id="giaiphap">
+        <div class="container">
+            <div class="philosophy-header">
+                <div class="section-label" style="justify-content:center; color:var(--orange)">02 / Triết lý huấn luyện</div>
+                <h2>High-value &<br><em style="font-style:italic; color:var(--orange)">No Breadcrumbs</em></h2>
+                <div class="divider-orange"></div>
+                <p class="philosophy-sub">Tôi không bán những mẩu vụn lý thuyết hay các bài giảng đóng gói sẵn. Chương trình này tập trung tối đa vào tính nguyên bản, thực chiến cao cấp và kết quả đầu ra thực tế. Học tới đâu, xử lý triệt để bài toán công việc tới đó.</p>
+            </div>
+            <div class="philosophy-cards">
+                <div class="phil-card">
+                    <div class="phil-tag">// Thực chiến giao diện</div>
+                    <h3>Case-study Nguyên Bản</h3>
+                    <p>Mọi buổi học đều xoay quanh việc giải phẫu các case-study thực tế từ các tech firms lớn. Bạn học cách tư duy của một Product Manager thực thụ khi đứng trước khủng hoảng hoặc áp lực tăng trưởng.</p>
+                </div>
+                <div class="phil-card">
+                    <div class="phil-tag">// Đồng hành 1-1</div>
+                    <h3>Phản Biện Sâu</h3>
+                    <p>Bạn gửi tài liệu, PRD hay chiến lược sản phẩm của bạn đang làm. Tôi sẽ phản biện trực tiếp để mài giũa tư duy logic, cấu trúc hệ thống và cách trình bày của bạn đạt tiêu chuẩn Senior cấp cao.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="lotrinh">
+        <div class="container">
+            <div class="modules-header">
+                <div>
+                    <div class="section-label">03 / Khung chương trình</div>
+                    <h2>Lộ trình mài giũa năng lực lõi</h2>
+                </div>
+                <p>Ba module được thiết kế theo thứ tự từ tư duy chiến lược đến kỹ năng thực thi — phản ánh đúng hành trình từ Middle lên Senior PM.</p>
+            </div>
+            <div class="modules-list">
+                <div class="module-row">
+                    <div class="module-num">Module 01</div>
+                    <div>
+                        <h3>Tư duy chiến lược sản phẩm</h3>
+                    </div>
+                    <div>
+                        <p>Vượt qua tư duy "feature-factory". Học cách dịch chuyển từ mục tiêu kinh doanh sang Product Vision, thiết lập OKRs/North Star Metric chuẩn chỉnh và lập Product Roadmap có sức thuyết phục cao với Stakeholders.</p>
+                        <div class="module-tags">
+                            <span class="tag">Product Vision</span>
+                            <span class="tag">OKRs</span>
+                            <span class="tag">North Star Metric</span>
+                            <span class="tag">Roadmap</span>
                         </div>
                     </div>
                 </div>
-                <div class="lg:col-span-7">
-                    <span class="text-xs font-semibold uppercase tracking-widest text-[#ff6b00] block mb-4">04 / Người đồng hành</span>
-                    <h2 class="text-3xl font-bold tracking-tight text-[#171717] mb-6">
-                        Học từ người đã trực tiếp đi qua toàn bộ lộ trình thăng tiến.
-                    </h2>
-                    <div class="space-y-4 text-neutral-600 font-light leading-relaxed text-sm md:text-base">
-                        <p>
-                            Tôi đã dành hơn 13 năm làm việc trong lòng các Tech Firms hàng đầu Việt Nam như FPT, MoMo, Be Group... Trực tiếp xây dựng, tối ưu hóa và chịu trách nhiệm cho các sản phẩm hàng triệu người dùng.
-                        </p>
-                        <p>
-                            Chương trình này không phải là một tập hợp các lý thuyết dịch từ sách vở nước ngoài. Nó là đúc kết xương máu từ những lần thất bại, những đêm giải quyết khủng hoảng hệ thống và những bài học thực chiến để được công nhận ở cấp độ quản lý cao cấp.
-                        </p>
+                <div class="module-row">
+                    <div class="module-num">Module 02</div>
+                    <div>
+                        <h3>Lead & Influence</h3>
+                    </div>
+                    <div>
+                        <p>Làm chủ nghệ thuật giao tiếp và gây ảnh hưởng không dùng quyền lực. Cách xử lý xung đột giữa các bên Tech - Business, tối ưu hóa quy trình làm việc với Agile/Scrum mà không làm xói mòn động lực Engineering.</p>
+                        <div class="module-tags">
+                            <span class="tag">Stakeholder Mgmt</span>
+                            <span class="tag">Influence w/o Authority</span>
+                            <span class="tag">Agile / Scrum</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="module-row">
+                    <div class="module-num">Module 03</div>
+                    <div>
+                        <h3>Thực thi dự án thực tế</h3>
+                    </div>
+                    <div>
+                        <p>Đi sâu vào cấu trúc kỹ thuật và phân tích dữ liệu cho PM. Cách viết PRD sắc sảo không kẽ hở, định hình bài toán tracking dữ liệu sản phẩm, phát hiện điểm nghẽn phễu chuyển đổi và xử lý khủng hoảng khi roll-out tính năng lớn.</p>
+                        <div class="module-tags">
+                            <span class="tag">PRD Writing</span>
+                            <span class="tag">Data Analytics</span>
+                            <span class="tag">Funnel Analysis</span>
+                            <span class="tag">Crisis Mgmt</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="dangky" class="py-24 lg:py-36 bg-[#171717] text-white text-center relative overflow-hidden">
-        <div class="absolute inset-0 bg-[linear-gradient(to_right,#262626_1px,transparent_1px),linear-gradient(to_bottom,#262626_1px,transparent_1px)] [background-size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-40"></div>
-        <div class="max-w-3xl mx-auto px-6 relative z-10">
-            <span class="text-xs font-semibold uppercase tracking-widest text-[#ff6b00] block mb-6">Đăng ký tham gia</span>
-            <h2 class="text-3xl md:text-5xl font-bold tracking-tight mb-8">Sẵn sàng bước vào hàng ngũ Senior PM</h2>
-            <p class="text-neutral-400 font-light max-w-xl mx-auto mb-12 text-sm md:text-base leading-relaxed">
-                Chương trình huấn luyện Private giới hạn số lượng học viên mỗi tháng để đảm bảo chất lượng phản biện sâu sắc nhất cho từng hồ sơ và bài toán cá nhân.
-            </p>
-            
-            <div class="inline-block border border-neutral-800 bg-neutral-900/50 backdrop-blur p-8 sm:p-12 mb-12 text-left max-w-md w-full">
-                <div class="text-xs uppercase tracking-wider text-neutral-400 font-medium mb-2">Private Mentoring Tier</div>
-                <div class="text-2xl font-bold mb-4">Huấn Luyện Thực Chiến</div>
-                <div class="w-full h-[1px] bg-neutral-800 my-4"></div>
-                <ul class="space-y-3 text-sm text-neutral-400 font-light mb-8">
-                    <li class="flex items-start gap-2"><span class="text-[#ff6b00] font-bold">✓</span> 1on1 Đồng hành & Phản biện tài liệu thực tế</li>
-                    <li class="flex items-start gap-2"><span class="text-[#ff6b00] font-bold">✓</span> Toàn bộ 3 Module Khung năng lực Senior PM</li>
-                    <li class="flex items-start gap-2"><span class="text-[#ff6b00] font-bold">✓</span> Support riêng tư giải quyết rào cản công việc hiện tại</li>
-                </ul>
-                <a href="[https://app.phuongproduct.com/checkout/?add-to-cart=private-mentoring](https://app.phuongproduct.com/checkout/?add-to-cart=private-mentoring)" class="block w-full text-center bg-[#ff6b00] hover:bg-white hover:text-[#171717] text-white font-semibold py-4 transition-all duration-300 rounded-none tracking-wide text-sm">
-                    Đăng Ký Khóa Học Ngay
-                </a>
-            </div>
-
-            <div class="text-xs text-neutral-500 font-mono">
-                Secured Checkout handled via WooCommerce system.
+    <section id="mentor">
+        <div class="container">
+            <div class="mentor-layout">
+                <div class="mentor-visual">
+                    <div class="mentor-card">
+                        <div class="mentor-card-bg"></div>
+                        <div class="mentor-years">13</div>
+                        <div class="mentor-name">Phương Product</div>
+                        <div class="mentor-role">Product Leader · Mentor · Researcher</div>
+                        <div class="mentor-brands">
+                            <span class="brand-pill">FPT</span>
+                            <span class="brand-pill">MoMo</span>
+                            <span class="brand-pill">Be Group</span>
+                        </div>
+                    </div>
+                    <div class="mentor-accent"></div>
+                </div>
+                <div class="mentor-content">
+                    <div class="section-label">04 / Người đồng hành</div>
+                    <h2>Học từ người đã trực tiếp đi qua toàn bộ lộ trình thăng tiến.</h2>
+                    <p>Tôi đã dành hơn 13 năm làm việc trong lòng các Tech Firms hàng đầu Việt Nam như FPT, MoMo, Be Group. Trực tiếp xây dựng, tối ưu hóa và chịu trách nhiệm cho các sản phẩm hàng triệu người dùng.</p>
+                    <p>Chương trình này không phải là một tập hợp các lý thuyết dịch từ sách vở nước ngoài. Nó là đúc kết xương máu từ những lần thất bại, những đêm giải quyết khủng hoảng hệ thống.</p>
+                    <div class="mentor-quote">
+                        <p>"Không có lý thuyết nào cứu bạn khi sản phẩm đang cháy. Chỉ có tư duy chuẩn mới làm được điều đó."</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <footer class="bg-white border-t border-neutral-200 py-12 text-center text-xs text-neutral-400 font-mono">
-        <div class="max-w-5xl mx-auto px-6">
-            &copy; 2026 Phương Product. Built with High-Value & No Breadcrumbs spirit.
+    <section id="dangky">
+        <div class="register-bg"></div>
+        <div class="register-glow"></div>
+        <div class="container register-inner">
+            <div class="section-label" style="justify-content:center">Đăng ký tham gia</div>
+            <h2>Sẵn sàng bước vào<br>hàng ngũ <em>Senior PM</em></h2>
+            <p class="register-desc">Chương trình huấn luyện Private giới hạn số lượng học viên mỗi tháng để đảm bảo chất lượng phản biện sâu sắc nhất cho từng hồ sơ và bài toán cá nhân.</p>
+            <div class="register-card">
+                <div class="register-card-inner">
+                    <div class="register-tier">Private Mentoring Tier</div>
+                    <div class="register-title">Huấn Luyện Thực Chiến</div>
+                    <div class="register-divider"></div>
+                    <ul class="register-features">
+                        <li>1on1 Đồng hành & Phản biện tài liệu thực tế</li>
+                        <li>Toàn bộ 3 Module Khung năng lực Senior PM</li>
+                        <li>Support riêng tư giải quyết rào cản công việc hiện tại</li>
+                    </ul>
+                    <a href="https://app.phuongproduct.com/checkout/?add-to-cart=private-mentoring" class="register-btn">Đăng Ký Khóa Học Ngay</a>
+                </div>
+            </div>
+            <p class="register-footer-note">Secured Checkout · WooCommerce System</p>
         </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Phương Product. Built with High-Value &amp; No Breadcrumbs spirit.</p>
     </footer>
 
 </body>
